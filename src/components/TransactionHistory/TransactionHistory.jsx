@@ -15,7 +15,7 @@ function TransactionHistory({ items }) {
       <tbody>
         {items.map(({ id, type, amount, currency }) => (
           <tr key={id} className={styles.tableRow}>
-            <td className={styles.tableBox}>{type}</td>
+            <td className={styles.tableBox}>{firstLetterLarge(type)}</td>
             <td className={styles.tableBox}>{amount}</td>
             <td className={styles.tableBox}>{currency}</td>
           </tr>
@@ -28,5 +28,18 @@ function TransactionHistory({ items }) {
 TransactionHistory.propTypes = {
   items: PropTypes.array.isRequired,
 };
+
+function firstLetterLarge(string) {
+  if (!string) {
+    return;
+  }
+
+  const splitedType = string.split('');
+  const firstLetter = splitedType[0].toUpperCase();
+  const typeCopy = [...splitedType];
+  typeCopy.splice(0, 1);
+  const result = [firstLetter, ...typeCopy].join('');
+  return result;
+}
 
 export default TransactionHistory;
