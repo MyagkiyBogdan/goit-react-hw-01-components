@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import styles from './FriendList.module.css';
-// import FriendListItem from './FriendListItem';
-function FriendList({ children }) {
+import FriendListItem from './FriendListItem';
+function FriendList({ friends, children }) {
   // Переменная friends и импорт нужны для альтернативного варианта function FriendList({ friends, children }) {
 
   return (
@@ -10,14 +10,14 @@ function FriendList({ children }) {
 
       {/* Альтернативный вариант с передачей прокидываением пропсов для FriendListItem через FriendList */}
 
-      {/* {friends.map(friend => (
+      {friends.map(friend => (
         <FriendListItem
           key={friend.id}
           avatar={friend.avatar}
           name={friend.name}
           isOnline={friend.isOnline}
         />
-      ))} */}
+      ))}
     </ul>
   );
 }
