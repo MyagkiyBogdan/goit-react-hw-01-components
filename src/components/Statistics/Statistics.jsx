@@ -4,19 +4,17 @@ import styles from './Statistics.module.css';
 const Statistics = ({ title, stats }) => {
   return (
     <section className={styles.statistics}>
-      {title !== undefined ? (
-        <h2 className={styles.title}>{title}</h2>
-      ) : undefined}
+      {title && <h2 className={styles.title}>{title}</h2>}
 
       <ul className={styles.statList}>
-        {stats.map(stat => (
+        {stats.map(({ id, label, percentage }) => (
           <li
             className={styles.item}
-            key={stat.id}
+            key={id}
             style={{ backgroundColor: `#${randomColorFunc()}` }}
           >
-            <span className={styles.label}>{stat.label}</span>
-            <span className={styles.percentage}>{stat.percentage}</span>
+            <span className={styles.label}>{label}</span>
+            <span className={styles.percentage}>{percentage}</span>
           </li>
         ))}
       </ul>
@@ -26,7 +24,13 @@ const Statistics = ({ title, stats }) => {
 
 Statistics.propTypes = {
   title: PropTypes.string,
-  stats: PropTypes.array.isRequired,
+  stats: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+      percentage: PropTypes.number.isRequired,
+    })
+  ).isRequired,
 };
 
 function randomColorFunc() {
