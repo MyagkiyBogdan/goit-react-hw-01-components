@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import styles from './FriendList.module.css';
-import FriendListItem from './FriendListItem';
+import FriendListItem from './FriendListItem/FriendListItem';
 function FriendList({ friends, children }) {
   // Переменная friends и импорт нужны для альтернативного варианта function FriendList({ friends, children }) {
 
